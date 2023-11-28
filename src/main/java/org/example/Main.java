@@ -9,6 +9,7 @@ public class Main {
         AccuWeatherClient accuWeatherClient = new AccuWeatherClient();
 
         HttpResponse<String> katowice = accuWeatherClient.getWeather("Katowice");
+
         System.out.println(katowice.body());
     }
 }
