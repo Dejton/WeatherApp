@@ -1,18 +1,24 @@
 package org.example;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Weather {
+    private UUID id;
     private final String city;
     private final String country;
     private final String cloudy;
     private final int temperature;
 
     public Weather(String city, String country, String cloudy, int temperature) {
+        this.id = createUuid(country, city);
         this.city = city;
         this.country = country;
         this.cloudy = cloudy;
         this.temperature = temperature;
+    }
+    private UUID createUuid(String country, String city) {
+        return UUID.nameUUIDFromBytes((country + city).getBytes());
     }
 
     @Override
@@ -32,6 +38,6 @@ public class Weather {
 
     @Override
     public String toString() {
-        return "Weather{" + "city='" + city + '\'' + ", country='" + country + '\'' + ", cloudy='" + cloudy + '\'' + ", temperature=" + temperature + '}';
+        return String.format("ID: %s, City: %s, Country: %s, Cloudy: %s, Temperature: %d", id ,city,country,cloudy, temperature);
     }
 }
